@@ -11,6 +11,7 @@
         android:layout_weight="1">
 
         <EditText
+            android:text="192"
             android:id="@+id/byte0_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,6 +24,7 @@
         android:layout_weight="1">
 
         <EditText
+            android:text="168"
             android:id="@+id/byte1_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,6 +37,7 @@
         android:layout_weight="1">
 
         <EditText
+            android:text="43"
             android:id="@+id/byte2_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,6 +50,7 @@
         android:layout_weight="1">
 
         <EditText
+            android:text="174"
             android:id="@+id/byte3_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,6 +1,8 @@
 package com.kernelhax.remotesensor.input;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.widget.EditText;
@@ -32,11 +34,13 @@ public class IPInputView extends LinearLayout {
         init(context);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public IPInputView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public IPInputView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);

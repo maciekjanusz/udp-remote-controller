@@ -32,7 +32,6 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
     private ScheduledFuture<?> scheduledFuture;
 
     private static final char SEPARATOR = ':';
-    private static final int PORT = 8000;
     private static final long INITIAL_DELAY = 1000; // millis
     private static final long DELAY = 10; // millis
 
@@ -97,7 +96,7 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
             int laser = laserButton.isPressed() ? 1 : 0;
             int thrust = (int) (thrustSlider.getThrustLevel() * 100);
 
-            String controlsMessage = String.valueOf(bearing)
+            String controlsMessage = 's' + String.valueOf(bearing)
                     + SEPARATOR + pitch
                     + SEPARATOR + roll
                     + SEPARATOR + thrust
@@ -116,7 +115,7 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
         // keep screen on
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-        udpClient.connect(ipAddress, PORT);
+        udpClient.connect(ipAddress);
         compass.start();
         startControlsTransmission();
     }
@@ -135,10 +134,16 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
 
     @Override
     public void onCompassStateChanged(float b, float p, float r) {
-//        this.bearing = ((int)(b - bearingModifier) % 360);
-//        this.bearing = (int) b;
-        this.bearing = (int) ((b - bearingModifier + 360f) % 360f);
+//        this.bearing = (int) ((b - bearingModifier + 360f) % 360f); // to dla 0 - 360
+        this.bearing = (int) adjustBearing(b, bearingModifier);
         this.pitch = (int) p;
         this.roll = (int) r;
+
+//        Log.i(TAG, "b1 = " + b + ", b2 = " + bearing);
+    }
+
+    public static float adjustBearing(float b, float mod) {
+        int positiveAngle = (int) ((b - mod + 360f) % 360f);
+        return positiveAngle > 180 ? positiveAngle - 360 : positiveAngle;
     }
 }
