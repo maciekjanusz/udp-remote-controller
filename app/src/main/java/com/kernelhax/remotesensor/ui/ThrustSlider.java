@@ -19,7 +19,11 @@ public class ThrustSlider extends View {
 
     private Paint thumbPaint;
 
-    private float thrustLevel = 0.5f;
+    private float thrustLevel = 1f;
+
+    public float getThrustLevel() {
+        return 1 - thrustLevel;
+    }
 
     public ThrustSlider(Context context) {
         super(context);
@@ -43,7 +47,7 @@ public class ThrustSlider extends View {
 
     private void init() {
         thumbPaint = new Paint();
-        thumbPaint.setColor(Color.BLACK);
+        thumbPaint.setColor(Color.WHITE);
         thumbPaint.setAntiAlias(true);
         thumbPaint.setStrokeWidth(6);
         thumbPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -77,11 +81,11 @@ public class ThrustSlider extends View {
             case MotionEvent.ACTION_MOVE:
                 changeThumbPosition(event.getY());
                 break;
-
-            case MotionEvent.ACTION_CANCEL:
-            case MotionEvent.ACTION_UP:
-                Log.i(TAG, "Thrust = " + thrustLevel);
-                break;
+//
+//            case MotionEvent.ACTION_CANCEL:
+//            case MotionEvent.ACTION_UP:
+//                Log.i(TAG, "Thrust = " + thrustLevel);
+//                break;
         }
 
         return true;
@@ -91,6 +95,7 @@ public class ThrustSlider extends View {
         thrustLevel = y/thrustInterval;
         thrustLevel = thrustLevel < 0 ? 0 : thrustLevel;
         thrustLevel = thrustLevel > 1 ? 1 : thrustLevel;
+
         if(listener != null) {
             listener.onThrustChanged(1-thrustLevel);
         }

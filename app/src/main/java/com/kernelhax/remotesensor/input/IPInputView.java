@@ -59,13 +59,11 @@ public class IPInputView extends LinearLayout {
         String byte2String = byte2EditText.getText().toString();
         String byte3String = byte3EditText.getText().toString();
 
-        byte[] ip = {
-                Byte.parseByte(byte0String),
-                Byte.parseByte(byte1String),
-                Byte.parseByte(byte2String),
-                Byte.parseByte(byte3String),
+        return new byte[]{
+                (byte) Integer.parseInt(byte0String),
+                (byte) Integer.parseInt(byte1String),
+                (byte) Integer.parseInt(byte2String),
+                (byte) Integer.parseInt(byte3String),
             };
-
-        return ip;
     }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_alignParentEnd="true"
+        android:orientation="vertical"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        >
+
+        <Button
+            android:id="@+id/missile_button"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="MISSILE"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <Button
+            android:id="@+id/laser_button"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="LASER"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+    </LinearLayout>
+
+    <com.kernelhax.remotesensor.ui.ThrustSlider
+        android:id="@+id/thrust_slider"
+        android:background="@drawable/thruster_drawable"
+        android:layout_width="100dp"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

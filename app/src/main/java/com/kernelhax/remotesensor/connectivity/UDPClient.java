@@ -33,7 +33,7 @@ public class UDPClient {
     }
 
     public void send(byte[] sendData) {
-        Log.i(TAG, "send command");
+//        Log.i(TAG, "send command");
         // todo: maybe try recycling
         DatagramPacket packet = new DatagramPacket(
                 sendData, sendData.length);
@@ -85,7 +85,7 @@ public class UDPClient {
                     break;
 
                 case SEND:
-                    Log.i(TAG, "sending...");
+//                    Log.i(TAG, "sending...");
                     DatagramPacket packet = (DatagramPacket) msg.obj;
                     sendData(packet);
                     break;
