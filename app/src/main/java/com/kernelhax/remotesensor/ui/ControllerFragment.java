@@ -37,7 +37,8 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
 
     @Bind(R.id.thrust_slider)  ThrustSlider thrustSlider;
     @Bind(R.id.missile_button) Button missileButton;
-    @Bind(R.id.laser_button)   Button laserButton;
+    @Bind(R.id.left_button)    Button leftButton;
+    @Bind(R.id.right_button)   Button rightButton;
 
     private UDPClient udpClient = new UDPClient();
     private Compass compass;
@@ -93,7 +94,8 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
         @Override
         public void run() {
             int missile = missileButton.isPressed() ? 1 : 0;
-            int laser = laserButton.isPressed() ? 1 : 0;
+            int left = leftButton.isPressed() ? 1 : 0;
+            int right = rightButton.isPressed() ? 1 : 0;
             int thrust = (int) (thrustSlider.getThrustLevel() * 100);
 
             String controlsMessage = 's' + String.valueOf(bearing)
@@ -101,9 +103,10 @@ public class ControllerFragment extends Fragment implements Compass.CompassListe
                     + SEPARATOR + roll
                     + SEPARATOR + thrust
                     + SEPARATOR + missile
-                    + SEPARATOR + laser;
+                    + SEPARATOR + left
+                    + SEPARATOR + right;
 
-//            Log.i(TAG, controlsMessage);
+            Log.i(TAG, controlsMessage);
 
             udpClient.send(controlsMessage.getBytes());
         }
